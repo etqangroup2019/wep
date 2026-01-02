@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="خالد النويصري | إظهار معماري وحلول رقمية" />
   <meta name="twitter:description"
     content="متخصص في الإظهار المعماري الاحترافي وتطوير التطبيقات والحلول الرقمية للمهندسين" />
-  <script type="module" crossorigin src="/assets/index-C62RXa3C.js"></script>
+  <script type="module" crossorigin src="/assets/index-WKyL-M3c.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-X08fkIDH.css">
 </head>
 
@@ -30,16 +30,16 @@
   <div id="root"></div>
   <!-- GitHub Pages SPA redirect handler -->
   <script>
-    (function (l) {
-      if (l.search[1] === '/') {
-        var decoded = l.search.slice(1).split('&').map(function (s) {
-          return s.replace(/~and~/g, '&')
-        }).join('?');
-        window.history.replaceState(null, null,
-          l.pathname.slice(0, -1) + decoded + l.hash
-        );
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var path = params.get('p');
+      if (path) {
+        var search = params.get('q') || '';
+        var hash = params.get('h') || '';
+        var newUrl = window.location.pathname.replace(/\/$/, '') + decodeURIComponent(path) + decodeURIComponent(search) + decodeURIComponent(hash);
+        window.history.replaceState(null, null, newUrl);
       }
-    }(window.location))
+    })();
   </script>
 </body>
 
