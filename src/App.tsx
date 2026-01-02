@@ -17,30 +17,34 @@ import MobileNav from "./components/layout/MobileNav";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <div className="pb-20 lg:pb-0">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:id" element={<ProductDetail />} />
-            <Route path="/tools" element={<Tools />} />
-            <Route path="/tools/:id" element={<ToolDetail />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/:id" element={<CourseDetail />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-        <MobileNav />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const basename = window.location.hostname.includes("github.io") ? "/wep" : "";
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter basename={basename}>
+          <ScrollToTop />
+          <div className="pb-20 lg:pb-0">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/tools" element={<Tools />} />
+              <Route path="/tools/:id" element={<ToolDetail />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/courses/:id" element={<CourseDetail />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+          <MobileNav />
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
