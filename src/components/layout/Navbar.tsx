@@ -62,7 +62,7 @@ export const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform overflow-hidden">
-              <img src="/favicon.jpg" alt="Logo" className="w-full h-full object-cover" />
+              <img src={`${import.meta.env.BASE_URL}favicon.jpg`} alt="Logo" className="w-full h-full object-cover" />
             </div>
             <span className="font-bold text-lg text-foreground hidden sm:block">
               {t("nav.brand_name")}

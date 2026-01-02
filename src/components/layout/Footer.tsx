@@ -39,7 +39,7 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl border border-border/50 overflow-hidden shadow-glow">
-                <img src="/favicon.jpg" alt="Logo" className="w-full h-full object-cover" />
+                <img src={`${import.meta.env.BASE_URL}favicon.jpg`} alt="Logo" className="w-full h-full object-cover" />
               </div>
               <div>
                 <h3 className="font-bold text-xl text-foreground">{t("nav.brand_name")}</h3>
