@@ -66,14 +66,14 @@ export const HeroSection = () => {
               <div className="flex items-center justify-center mb-3">
                 <Building2 className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground">+5</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground">+7</h3>
               <p className="text-sm text-muted-foreground mt-1">{t("hero.stats.experience")}</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-3">
                 <Code2 className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground">+10</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground">+5</h3>
               <p className="text-sm text-muted-foreground mt-1">{t("hero.stats.products")}</p>
             </div>
             <div className="text-center">
