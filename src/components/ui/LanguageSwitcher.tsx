@@ -13,17 +13,16 @@ export const LanguageSwitcher = () => {
     return (
         <Button
             variant="ghost"
-            size="icon"
+            size="sm"
             onClick={toggleLanguage}
-            className="rounded-full"
+            className="h-9 w-9 p-0 rounded-full hover:bg-muted relative group transition-all duration-300"
             title={i18n.language === "ar" ? "Switch to English" : "العربية"}
         >
-            <Languages className="h-5 w-5" />
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground shadow-glow group-hover:scale-110 transition-transform">
+                {i18n.language === "ar" ? "EN" : "AR"}
+            </span>
             <span className="sr-only">
                 {i18n.language === "ar" ? "English" : "العربية"}
-            </span>
-            <span className="absolute -bottom-1 -right-1 text-[10px] font-bold bg-primary text-primary-foreground px-1 rounded-sm">
-                {i18n.language === "ar" ? "EN" : "AR"}
             </span>
         </Button>
     );

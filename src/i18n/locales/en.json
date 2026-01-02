@@ -45,8 +45,10 @@
         "title_first": "Khaled",
         "title_last": "Al-Nowaisri",
         "description": "Specializing in professional architectural visualization and developing innovative digital solutions and applications serving engineers and engineering firms.",
-        "cta_services": "Explore Services",
+        "cta_services": "Browse Services",
         "cta_products": "Browse Products",
+        "cta_tools": "Browse Tools",
+        "cta_courses": "Browse Courses",
         "stats": {
             "experience": "Years Experience",
             "products": "App & Product",

@@ -33,16 +33,29 @@ export const HeroSection = () => {
           </p>
 
           {/* CTA Buttons */}
-          <div className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="hero" size="lg" asChild>
+          <div className="animate-fade-up delay-300 grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-52 text-sm sm:text-base px-2 sm:px-8">
               <Link to="/services">
                 {t("hero.cta_services")}
-                <ArrowLeft className="w-5 h-5 rtl:rotate-180" />
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 rtl:rotate-180" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-52 text-sm sm:text-base px-2 sm:px-8">
               <Link to="/products">
                 {t("hero.cta_products")}
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 rtl:rotate-180" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-52 text-sm sm:text-base px-2 sm:px-8">
+              <Link to="/tools">
+                {t("hero.cta_tools")}
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 rtl:rotate-180" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-52 text-sm sm:text-base px-2 sm:px-8">
+              <Link to="/courses">
+                {t("hero.cta_courses")}
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 rtl:rotate-180" />
               </Link>
             </Button>
           </div>

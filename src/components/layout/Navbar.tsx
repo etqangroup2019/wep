@@ -52,8 +52,8 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-background/80 backdrop-blur-xl shadow-card"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isOpen
+        ? "bg-background/95 backdrop-blur-xl shadow-card"
         : "bg-transparent"
         }`}
     >
@@ -91,15 +91,17 @@ export const Navbar = () => {
 
             <Button
               variant="ghost"
-              size="icon"
+              size="sm"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="h-9 w-9 p-0 rounded-full hover:bg-muted relative group transition-all duration-300"
             >
-              {isDark ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-glow group-hover:scale-110 transition-transform">
+                {isDark ? (
+                  <Sun className="h-4 w-4" />
+                ) : (
+                  <Moon className="h-4 w-4" />
+                )}
+              </div>
             </Button>
 
             <Button
@@ -115,22 +117,26 @@ export const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${isOpen ? "max-h-80 pb-6" : "max-h-0"
-            }`}
+          className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-[500px] opacity-100 py-8" : "max-h-0 opacity-0"
+            } border-t border-border/50`}
         >
-          <div className="flex flex-col gap-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => setIsOpen(false)}
-                className={`px-4 py-3 rounded-lg font-medium transition-all ${location.pathname === link.href
-                  ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  }`}
-              >
-                {t(link.labelKey)}
-              </Link>
+          <div className="flex flex-col items-center gap-2">
+            {navLinks.map((link, index) => (
+              <div key={link.href} className="w-full flex flex-col items-center">
+                <Link
+                  to={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`w-full text-center px-4 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${location.pathname === link.href
+                    ? "text-primary bg-primary/5"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    }`}
+                >
+                  {t(link.labelKey)}
+                </Link>
+                {index < navLinks.length - 1 && (
+                  <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-30 my-1" />
+                )}
+              </div>
             ))}
           </div>
         </div>
