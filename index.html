@@ -4,12 +4,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    // Dynamic Base Path for compatibility with GitHub Pages (subfolder) and Netlify (root)
+    (function () {
+      var base = "/";
+      if (window.location.hostname.includes("github.io")) {
+        base = "/wep/";
+      }
+      var baseTag = document.createElement('base');
+      baseTag.href = base;
+      document.head.appendChild(baseTag);
+    })();
+  </script>
   <title>خالد النويصري | إظهار معماري وحلول رقمية</title>
   <meta name="description"
     content="خالد النويصري - متخصص في الإظهار المعماري الاحترافي وتطوير التطبيقات والحلول الرقمية للمهندسين والشركات الهندسية" />
   <meta name="keywords" content="إظهار معماري, بلندر, تصميم معماري, تطبيقات هندسية, خالد النويصري" />
   <meta name="author" content="خالد النويصري" />
-  <link rel="icon" href="/favicon.jpg" />
+  <link rel="icon" href="favicon.jpg" />
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
