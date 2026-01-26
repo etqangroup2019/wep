@@ -5,15 +5,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>
-    // Dynamic Base Path for compatibility with GitHub Pages (subfolder) and Netlify (root)
+    // 1. Determine the base path immediately
     (function () {
       var base = "/";
       if (window.location.hostname.includes("github.io")) {
         base = "/wep/";
       }
-      var baseTag = document.createElement('base');
-      baseTag.href = base;
-      document.head.appendChild(baseTag);
+      // Inject base tag BEFORE anything else is parsed
+      document.write('<base href="' + base + '">');
+
+      // 2. Handle GitHub Pages SPA redirection
+      var params = new URLSearchParams(window.location.search);
+      var path = params.get('p');
+      if (path) {
+        var search = params.get('q') || '';
+        var hash = params.get('h') || '';
+        // Build the new URL relative to the base
+        var newUrl = base.replace(/\/$/, '') + decodeURIComponent(path) + decodeURIComponent(search) + decodeURIComponent(hash);
+        window.history.replaceState(null, null, newUrl);
+      }
     })();
   </script>
   <title>خالد النويصري | إظهار معماري وحلول رقمية</title>
@@ -38,20 +48,7 @@
 
 <body>
   <div id="root"></div>
-  <!-- GitHub Pages SPA redirect handler -->
-  <script>
-    (function () {
-      var params = new URLSearchParams(window.location.search);
-      var path = params.get('p');
-      if (path) {
-        var search = params.get('q') || '';
-        var hash = params.get('h') || '';
-        var newUrl = window.location.pathname.replace(/\/$/, '') + decodeURIComponent(path) + decodeURIComponent(search) + decodeURIComponent(hash);
-        window.history.replaceState(null, null, newUrl);
-      }
-    })();
-  </script>
-  <script type="module" src="/src/main.tsx"></script>
+  <script type="module" src="src/main.tsx"></script>
 </body>
 
 </html>
