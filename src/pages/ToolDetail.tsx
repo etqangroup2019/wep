@@ -15,6 +15,7 @@ const ToolDetail = () => {
   const [overviewContent, setOverviewContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [version, setVersion] = useState<string | null>(null);
+  const [dynamicDownloadUrl, setDynamicDownloadUrl] = useState<string | null>(null);
 
   const toolsData = {
     "kh-tools": {
@@ -51,6 +52,7 @@ const ToolDetail = () => {
   };
 
   const tool = toolsData[id as keyof typeof toolsData] as any;
+  const currentDownloadUrl = dynamicDownloadUrl || tool?.downloadUrl;
 
   useEffect(() => {
     if (tool?.readmeUrl) {
@@ -129,6 +131,30 @@ const ToolDetail = () => {
             setOverviewContent(null);
           }
 
+          // Extract Download Link if it exists in the raw text (to cover all locations) or processed content
+          // We look for patterns like ### رابط التحميل or **Download Link** followed by a URL
+          const downloadRegex = /(?:###\s*|(?:\*\*|__)?)(?:رابط التحميل|Download Link|تحميل|Download)(?:(?:\*\*|__)?)\s*(?:\r?\n)+\s*(?:\[.*?\]\((https?:\/\/[^\)]+)\)|(https?:\/\/[^\s]+))/i;
+          const downloadMatch = text.match(downloadRegex);
+          if (downloadMatch) {
+            const url = downloadMatch[1] || downloadMatch[2];
+            if (url) {
+              setDynamicDownloadUrl(url);
+            }
+          } else {
+            // Try searching in processed content as fallback
+            const processedDownloadMatch = processedContent.match(downloadRegex);
+            if (processedDownloadMatch) {
+              const url = processedDownloadMatch[1] || processedDownloadMatch[2];
+              if (url) {
+                setDynamicDownloadUrl(url);
+              }
+            }
+          }
+
+          // Remove Download Link section from processedContent to avoid duplication
+          const downloadSectionRegex = /(?:###\s+|(?:(?:\*\*|__)?)?)(?:رابط التحميل|Download Link|تحميل|Download)(?:(?:\*\*|__)?)?.*?(?=###|$)/si;
+          processedContent = processedContent.replace(downloadSectionRegex, '').trim();
+
           setReadmeContent(processedContent);
 
           // Extract version from the full text
@@ -198,10 +224,10 @@ const ToolDetail = () => {
                     )}
                   </div>
 
-                  {tool.downloadUrl && (
+                  {currentDownloadUrl && (
                     <div className="mb-8">
                       <Button variant="hero" size="lg" asChild className="rounded-2xl shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
-                        <a href={tool.downloadUrl} target="_blank" rel="noopener noreferrer">
+                        <a href={currentDownloadUrl} target="_blank" rel="noopener noreferrer">
                           <Download className="w-5 h-5 rtl:ml-2 ltr:mr-2" />
                           {t("common.free_download")}
                         </a>
