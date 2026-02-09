@@ -1,0 +1,26 @@
+{
+    "name": "Al-Nwesary",
+    "short_name": "Al-Nwesary",
+    "description": "خالد النويصري - متخصص في الإظهار المعماري الاحترافي وتطوير التطبيقات والحلول الرقمية",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "dir": "rtl",
+    "lang": "ar",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "images/logo.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/logo.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        }
+    ]
+}
